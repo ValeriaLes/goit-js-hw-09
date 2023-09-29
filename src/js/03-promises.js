@@ -16,16 +16,15 @@ btn.addEventListener('click', onBtnSubmit)
 function onBtnSubmit (event) {
  event.preventDefault()
 
- let delayVal = Number(delay.value)
  
  
  for (let i = 1; i <= amount.value; i += 1) {
-  
-  delayVal += Number(step.value)
 
+  let delayVal = Number(delay.value) + Number(step.value) * (i - 1)
+
+ createPromise(i, delayVal).then(onFulfilled).catch(onReject)
+ 
   
-  
-  createPromise(i, delayVal).then(onFulfilled).catch(onReject)
  }
  
 
@@ -44,12 +43,18 @@ function createPromise(position, delay) {
       }
     }, delay)
 
+    
+
   })
+
+  
   
 }
 function onFulfilled (result) {
   Notiflix.Notify.success(result);
+  
   }
   function onReject (error) {
     Notiflix.Notify.failure(error);
+   
   }
