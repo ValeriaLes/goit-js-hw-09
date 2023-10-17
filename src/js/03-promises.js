@@ -13,19 +13,35 @@ const amount = document.querySelector('input[name="amount"]')
 
 btn.addEventListener('click', onBtnSubmit)
 
+
+
+
+
 function onBtnSubmit (event) {
  event.preventDefault()
 
  
+ if (delay.value < 0 || amount.value <= 0 || step.value < 0) {
+    
+  return Notiflix.Notify.failure('Fill in a number that is bigger than 0')
+  
+}
+ 
+
  
  for (let i = 1; i <= amount.value; i += 1) {
 
   let delayVal = Number(delay.value) + Number(step.value) * (i - 1)
+  
+  
+
+  
 
  createPromise(i, delayVal).then(onFulfilled).catch(onReject)
  
   
  }
+
  
 
 }
