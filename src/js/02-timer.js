@@ -24,7 +24,7 @@ allValues.forEach((descr) => {
 
 let ms = 0;
 let timerId = 0;
-let currentDay = 0;
+let currentDate = 0;
 let chosenDate = 0;
 
 const options = {
